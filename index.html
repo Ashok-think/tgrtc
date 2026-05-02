@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="TGRTC Smart Bus Pass — digital bus pass for Telangana. Tap to verify, recharge online, block instantly.">
+  <title>TGRTC Smart Bus Pass</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LANDING -->
+<div id="landing" class="page active">
+  <div class="brand-chip">TELANGANA GOVT</div>
+  <h1 class="hero">TGRTC Smart<br>Bus Pass</h1>
+  <p class="hero-sub">Digital bus pass — tap to verify, recharge online, block instantly.</p>
+  <div class="pgrid">
+    <div class="pcard" id="btnP">
+      <div class="pcard-icon ic-b">🎫</div>
+      <h3>PASSENGER</h3>
+      <p>View pass, recharge online &amp; block lost card</p>
+      <button class="pc-btn pb-b">PASSENGER LOGIN</button>
+    </div>
+    <div class="pcard" id="btnC">
+      <div class="pcard-icon ic-g">🚌</div>
+      <h3>CONDUCTOR</h3>
+      <p>Scan RFID cards, verify &amp; collect cash recharges</p>
+      <button class="pc-btn pb-g">CONDUCTOR LOGIN</button>
+    </div>
+    <div class="pcard" id="btnA">
+      <div class="pcard-icon ic-y">⚙️</div>
+      <h3>ADMIN</h3>
+      <p>Manage passes, conductor reports &amp; controls</p>
+      <button class="pc-btn pb-y">ADMIN LOGIN</button>
+    </div>
+  </div>
+</div>
+
+<!-- AUTH -->
+<div id="auth" class="page">
+  <div class="abox">
+    <div id="authRole" class="role-chip rc-p">PASSENGER</div>
+    <h2 id="authTitle">Welcome Back</h2>
+    <div id="authSub" class="asub">Login to your account</div>
+    <div id="authAlert" class="alert ae"></div>
+    <div id="LF">
+      <div class="fg"><label>PHONE NUMBER</label><input id="lPh" type="text" placeholder="10-digit phone number"></div>
+      <div class="fg"><label>PASSWORD</label><input id="lPw" type="password" placeholder="Enter your password"></div>
+      <button id="loginBtn" class="abtn">LOGIN →</button>
+      <div id="suRow" class="alink">No account? <span id="goSU">Sign Up</span></div>
+    </div>
+    <div id="SF" style="display:none">
+      <div class="fg"><label>FULL NAME</label><input id="sNm" type="text" placeholder="Full name"></div>
+      <div class="fg"><label>PHONE NUMBER</label><input id="sPh" type="text" placeholder="10-digit phone"></div>
+      <div class="fg" id="condRouteGroup" style="display:none">
+        <label>ASSIGNED ROUTE</label>
+        <select id="sRt">
+          <option value="">-- Select Your Assigned Route --</option>
+          <optgroup label="🟢 City Routes">
+            <option value="47L | Mehdipatnam → Secunderabad">47L — Mehdipatnam → Secunderabad</option>
+            <option value="5 | LB Nagar → Secunderabad">5 — LB Nagar → Secunderabad</option>
+            <option value="10 | Miyapur → Secunderabad">10 — Miyapur → Secunderabad</option>
+            <option value="216 | Dilsukhnagar → Uppal">216 — Dilsukhnagar → Uppal</option>
+            <option value="288D | MGBS → Shamshabad Airport">288D — MGBS → Shamshabad Airport</option>
+            <option value="65M | KPHB → Charminar">65M — KPHB → Charminar</option>
+            <option value="127 | Kukatpally → Charminar">127 — Kukatpally → Charminar</option>
+            <option value="142 | Ameerpet → LB Nagar">142 — Ameerpet → LB Nagar</option>
+            <option value="25C | Secunderabad → Mehdipatnam">25C — Secunderabad → Mehdipatnam</option>
+            <option value="86D | JBS → Dilsukhnagar">86D — JBS → Dilsukhnagar</option>
+          </optgroup>
+          <optgroup label="🔵 Express Routes">
+            <option value="505 | Hyderabad → Warangal Express">505 — Hyderabad → Warangal (Express)</option>
+            <option value="5K | Hyderabad → Karimnagar">5K — Hyderabad → Karimnagar</option>
+            <option value="212 | Hyderabad → Nalgonda">212 — Hyderabad → Nalgonda</option>
+            <option value="300K | MGBS → Kurnool">300K — MGBS → Kurnool</option>
+            <option value="800 | Hyderabad → Nizamabad">800 — Hyderabad → Nizamabad</option>
+            <option value="900 | Hyderabad → Khammam">900 — Hyderabad → Khammam</option>
+            <option value="400 | Hyderabad → Nandyal">400 — Hyderabad → Nandyal</option>
+          </optgroup>
+          <optgroup label="🟡 Pallevelugu Routes">
+            <option value="PV1 | MGBS → Vikarabad">PV1 — MGBS → Vikarabad</option>
+            <option value="PV2 | MGBS → Tandur">PV2 — MGBS → Tandur</option>
+            <option value="PV3 | Medchal → MGBS">PV3 — Medchal → MGBS</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="fg" id="cidFg" style="display:none"><label>CONDUCTOR STAFF ID</label><input id="sCid" type="text" placeholder="e.g. C-001"></div>
+      <div class="fg"><label>PASSWORD</label><input id="sPw" type="password" placeholder="Min 4 characters"></div>
+      <div class="fg"><label>CONFIRM PASSWORD</label><input id="sCf" type="password" placeholder="Confirm password"></div>
+      <button id="signupBtn" class="abtn">CREATE ACCOUNT →</button>
+      <div class="alink">Already have an account? <span id="goLF">Login</span></div>
+    </div>
+    <div id="backBtn" class="aback">← Back to Portal Selection</div>
+  </div>
+</div>
+
+<!-- PASSENGER DASH -->
+<div id="pDash" class="page">
+  <div class="topbar">
+    <div class="tb-left"><span class="tb-logo">🚌 TGRTC</span><span class="tb-chip rc-p">PASSENGER</span></div>
+    <div class="tb-right"><span class="tb-user" id="pTbU">👤</span><button id="pLo" class="lobtn">LOGOUT</button></div>
+  </div>
+  <div class="dbody">
+    <div class="dh">My Bus Pass</div>
+    <div class="ds">Manage your TGRTC Smart Pass</div>
+     <div class="pass-card">
+       <div class="pass-photo"><img id="passPhoto" src="" alt="Profile" style="width:50px;height:50px;border-radius:50%;object-fit:cover;border:1px solid #ddd;"></div>
+       <div class="pch"><div class="pctag">TGRTC SMART BUS PASS</div><div id="pStat" class="pcst st-no">● NOT RECHARGED</div></div>
+       <div id="pNm" class="pcname">PASSENGER NAME</div>
+      <div id="pPid" class="pcid">Pass ID: —</div>
+      <div class="pcrow">
+        <div class="pci"><label>VALID TILL</label><span id="pExp" style="color:#ef4444">Not Recharged</span></div>
+        <div class="pci"><label>PASS TYPE</label><span id="pCt">—</span></div>
+        <div class="pci"><label>FARE RATE</label><span style="color:#06b6d4">₹25 / km</span></div>
+      </div>
+     </div>
+     <div class="sect">
+       <div class="sect-title">👤 Profile Photo</div>
+       <div id="photoContainer"><img id="profilePhoto" src="" alt="Profile Photo" style="width:100px;height:100px;border-radius:50%;object-fit:cover;display:none;margin-bottom:10px;"></div>
+       <input type="file" id="photoInput" accept="image/*" style="margin-bottom:10px;">
+       <button id="uploadPhoto" class="btn bp">Upload Photo</button>
+     </div>
+     <div class="tabs">
+       <button class="tb on" id="ptb0">💳 Recharge</button>
+       <button class="tb" id="ptb1">🔒 Block / Unblock</button>
+       <button class="tb" id="ptb2">📋 History</button>
+     </div>
+    <div id="pt0" class="sect">
+      <div class="sect-title">💳 RECHARGE YOUR PASS</div>
+      <div id="pRA" class="alert ae"></div>
+      <div style="background:rgba(37,99,235,0.06);border:1px solid rgba(59,130,246,0.2);border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:12px;color:#94afc7;line-height:1.7">
+        💡 <b style="color:#3b82f6">Fare Info:</b> ₹25 per km is deducted from your pass balance per trip. Monthly &amp; 3-Month pass holders travel unlimited within pass validity.
+      </div>
+      <div class="planrow">
+        <div class="plan" id="pp0"><div class="pln">DAY PASS</div><div class="plp">₹120</div><div class="plt">Single Day</div></div>
+        <div class="plan on" id="pp1"><div class="pln">MONTHLY</div><div class="plp">₹900</div><div class="plt">★ POPULAR</div></div>
+        <div class="plan" id="pp2"><div class="pln">3 MONTHS</div><div class="plp">₹2500</div><div class="plt">Best Value</div></div>
+      </div>
+      <div id="pSP" class="ibox">Selected: <strong>Monthly Pass — ₹900</strong></div>
+      <div class="fg"><label>PAYMENT METHOD</label>
+        <select id="pPm"><option>UPI (GPay / PhonePe / Paytm)</option><option>Debit / Credit Card</option><option>Net Banking</option></select>
+      </div>
+      <button id="pRBtn" class="btn bp bfw">PAY &amp; RECHARGE →</button>
+    </div>
+    <div id="pt1" class="sect" style="display:none">
+      <div class="sect-title">🔒 BLOCK / UNBLOCK CARD</div>
+      <div id="pBA" class="alert ae"></div>
+      <div class="wbox"><b style="font-size:13px">⚠️ Lost or Stolen Card?</b><p style="font-size:12px;color:#94afc7;margin-top:6px;line-height:1.7">Block it immediately to prevent misuse. You can unblock it later when found.</p></div>
+      <div style="padding:14px;background:#0b1526;border-radius:11px;margin-bottom:16px">
+        <div style="font-size:10px;letter-spacing:2px;color:#4e6480;margin-bottom:6px">CARD STATUS</div>
+        <div id="pCSt" style="font-size:15px;font-weight:700;color:#10b981">● ACTIVE — Not Blocked</div>
+      </div>
+      <div class="brow">
+        <button id="pBlk" class="btn bd">🔒 BLOCK MY CARD</button>
+        <button id="pUblk" class="btn bg" style="display:none">🔓 UNBLOCK MY CARD</button>
+      </div>
+    </div>
+    <div id="pt2" class="sect" style="display:none">
+      <div class="sect-title">📋 RECHARGE HISTORY</div>
+      <table><thead><tr><th>DATE</th><th>PLAN</th><th>AMOUNT</th><th>METHOD</th></tr></thead>
+      <tbody id="pHB"><tr><td colspan="4" class="te">No recharges yet</td></tr></tbody></table>
+    </div>
+  </div>
+</div>
+
+<!-- CONDUCTOR DASH -->
+<div id="cDash" class="page">
+  <div class="topbar">
+    <div class="tb-left"><span class="tb-logo">🚌 TGRTC</span><span class="tb-chip rc-c">CONDUCTOR</span></div>
+    <div class="tb-right"><span class="tb-user" id="cTbU">🎫</span><button id="cLo" class="lobtn">LOGOUT</button></div>
+  </div>
+  <div class="dbody">
+    <div class="dh">Conductor Portal</div>
+    <div class="ds" id="cRtSub">Route: —</div>
+    <div class="srow">
+      <div class="sc"><div class="sc-l">TODAY SCANS</div><div class="sc-v vb" id="cSc">0</div></div>
+      <div class="sc"><div class="sc-l">VALID</div><div class="sc-v vg" id="cVl">0</div></div>
+      <div class="sc"><div class="sc-l">INVALID</div><div class="sc-v vr" id="cIv">0</div></div>
+      <div class="sc"><div class="sc-l">RECHARGES</div><div class="sc-v vy" id="cRn">0</div></div>
+      <div class="sc"><div class="sc-l">CASH</div><div class="sc-v vc" id="cCa">₹0</div></div>
+    </div>
+    <div class="tabs">
+      <button class="tb on" id="ctb0">📡 Scan &amp; Verify</button>
+      <button class="tb" id="ctb1">💵 Cash Recharge</button>
+      <button class="tb" id="ctb2">📋 History</button>
+    </div>
+    <div id="ct0">
+      <div class="sect">
+        <div class="sect-title">📡 SCAN RFID CARD</div>
+        <div class="scanzone" id="szBtn"><div class="sz-ic">📶</div><div class="sz-t">TAP CARD HERE</div><div class="sz-h">CLICK TO SIMULATE SCAN</div></div>
+        <div style="text-align:center;margin:12px 0;font-size:11px;letter-spacing:2px;color:#4e6480">— OR MANUAL ENTRY —</div>
+        <div class="irow">
+          <div class="fg"><label>PASS ID / PHONE NUMBER</label><input id="cMI" type="text" placeholder="Pass ID or phone number"></div>
+          <button id="cMBtn" class="btn bp" style="height:44px">VERIFY</button>
+        </div>
+        <div id="cSR" class="sres"><div id="cSC"></div></div>
+      </div>
+      <div class="sect">
+        <div class="sect-title">📋 RECENT SCANS</div>
+        <table><thead><tr><th>TIME</th><th>NAME</th><th>PASS ID</th><th>STATUS</th></tr></thead>
+        <tbody id="cRB"><tr><td colspan="4" class="te">No scans today</td></tr></tbody></table>
+      </div>
+    </div>
+    <div id="ct1" style="display:none">
+      <div class="sect">
+        <div class="sect-title">💵 CASH RECHARGE FOR PASSENGER</div>
+        <div id="cRA" class="alert ae"></div>
+        <div class="wbox"><p style="font-size:12px;color:#94afc7;line-height:1.7">⚠️ <b style="color:#f59e0b">Important:</b> Collect cash from passenger before recharging. Every transaction is <b style="color:#06b6d4">visible to Admin</b>.</p></div>
+        <div class="fg"><label>PASSENGER PHONE NUMBER</label><input id="cPPh" type="text" placeholder="Passenger phone number"></div>
+        <div id="cPR" class="pres">
+          <div style="font-size:10px;letter-spacing:2px;color:#4e6480;margin-bottom:6px">PASSENGER FOUND</div>
+          <div id="cPN" style="font-weight:700;font-size:15px"></div>
+          <div id="cPRt" style="font-size:12px;color:#4e6480;margin-top:4px"></div>
+          <div id="cPEx" style="font-size:12px;margin-top:6px"></div>
+        </div>
+        <div class="fg">
+          <label>SELECT PLAN</label>
+          <div class="planrow">
+            <div class="plan" id="cp0"><div class="pln">DAY PASS</div><div class="plp">₹120</div><div class="plt">Single Day</div></div>
+            <div class="plan on" id="cp1"><div class="pln">MONTHLY</div><div class="plp">₹900</div><div class="plt">★ POPULAR</div></div>
+            <div class="plan" id="cp2"><div class="pln">3 MONTHS</div><div class="plp">₹2500</div><div class="plt">Best Value</div></div>
+          </div>
+        </div>
+        <div class="fg"><label>CASH RECEIVED (₹)</label><input id="cCI" type="number" placeholder="Enter cash amount received from passenger"></div>
+        <button id="cRBtn" class="btn bg bfw">✅ CONFIRM RECHARGE &amp; RECORD</button>
+      </div>
+    </div>
+    <div id="ct2" style="display:none">
+      <div class="sect">
+        <div class="sect-title">📋 MY RECHARGE HISTORY</div>
+        <div class="ibox">ℹ️ These records are visible to Admin — all transactions are permanently recorded.</div>
+        <table><thead><tr><th>DATE &amp; TIME</th><th>PASSENGER</th><th>PLAN</th><th>CASH</th><th>NEW EXPIRY</th></tr></thead>
+        <tbody id="cHB"><tr><td colspan="5" class="te">No recharges yet</td></tr></tbody></table>
+        <div class="tbar"><span>Total Cash Collected:</span><span id="cHT">₹0</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN DASH -->
+<div id="aDash" class="page">
+  <div class="topbar">
+    <div class="tb-left"><span class="tb-logo">🚌 TGRTC</span><span class="tb-chip rc-a">ADMIN</span></div>
+    <div class="tb-right"><span class="tb-user">⚙️ Admin</span><button id="aLo" class="lobtn">LOGOUT</button></div>
+  </div>
+  <div class="dbody">
+    <div class="dh">Admin Panel</div>
+    <div class="ds">Manage all passes, conductors &amp; system controls</div>
+    <div class="srow">
+      <div class="sc"><div class="sc-l">TOTAL</div><div class="sc-v vb" id="aT">0</div></div>
+      <div class="sc"><div class="sc-l">ACTIVE</div><div class="sc-v vg" id="aAc">0</div></div>
+      <div class="sc"><div class="sc-l">BLOCKED</div><div class="sc-v vr" id="aBl">0</div></div>
+      <div class="sc"><div class="sc-l">NO PASS</div><div class="sc-v vy" id="aNp">0</div></div>
+    </div>
+    <div class="tabs">
+      <button class="tb on" id="atb0">🎫 All Passes</button>
+      <button class="tb" id="atb1">💵 Conductor Cash</button>
+      <button class="tb" id="atb2">➕ Add Pass</button>
+    </div>
+    <div id="at0" class="sect">
+      <div class="sect-title">🎫 ALL PASSENGERS</div>
+      <div id="aPA" class="alert as"></div>
+      <table><thead><tr><th>NAME</th><th>PASS ID</th><th>ROUTE</th><th>EXPIRY</th><th>STATUS</th><th>ACTION</th></tr></thead>
+      <tbody id="aPB"><tr><td colspan="6" class="te">No passengers registered yet</td></tr></tbody></table>
+    </div>
+    <div id="at1" class="sect" style="display:none">
+      <div class="sect-title">💵 CONDUCTOR CASH REPORT</div>
+      <div id="aCA" class="alert ae"></div>
+      <div class="irow" style="margin-bottom:16px">
+        <div class="fg"><label>CONDUCTOR ID or PHONE</label><input id="aCQ" type="text" placeholder="e.g. C-001 or 9876543210"></div>
+        <button id="aCBtn" class="btn bp" style="height:44px">SEARCH</button>
+      </div>
+      <div id="aCInfo" class="cinfo">
+        <div id="aCNm" style="font-weight:700;font-size:15px"></div>
+        <div id="aCRt" style="font-size:12px;color:#4e6480;margin-top:4px"></div>
+        <div style="display:flex;gap:24px;margin-top:14px">
+          <div><div class="sc-l">TOTAL RECHARGES</div><div class="sc-v vb" id="aCCnt">0</div></div>
+          <div><div class="sc-l">TOTAL CASH</div><div class="sc-v vg" id="aCTot">₹0</div></div>
+        </div>
+      </div>
+      <table id="aCTbl" style="display:none"><thead><tr><th>DATE &amp; TIME</th><th>PASSENGER</th><th>PLAN</th><th>CASH</th><th>NEW EXPIRY</th></tr></thead>
+      <tbody id="aCBody"></tbody></table>
+      <div id="aCEmp" style="text-align:center;padding:28px;color:#4e6480;font-size:13px">Enter Conductor ID or phone to search</div>
+    </div>
+    <div id="at2" class="sect" style="display:none">
+      <div class="sect-title">➕ ADD NEW PASS</div>
+      <div id="aAA" class="alert as"></div>
+      <div class="g2">
+        <div class="fg"><label>FULL NAME</label><input id="aN" type="text" placeholder="Passenger full name"></div>
+        <div class="fg"><label>PHONE NUMBER</label><input id="aPh" type="text" placeholder="10-digit phone"></div>
+        <div class="fg">
+          <label>ROUTE</label>
+          <select id="aRt">
+            <option value="">-- Select Route --</option>
+            <optgroup label="🟢 City Routes">
+              <option value="47L | Mehdipatnam → Secunderabad">47L — Mehdipatnam → Secunderabad</option>
+              <option value="5 | LB Nagar → Secunderabad">5 — LB Nagar → Secunderabad</option>
+              <option value="10 | Miyapur → Secunderabad">10 — Miyapur → Secunderabad</option>
+              <option value="216 | Dilsukhnagar → Uppal">216 — Dilsukhnagar → Uppal</option>
+              <option value="288D | MGBS → Shamshabad Airport">288D — MGBS → Airport</option>
+              <option value="65M | KPHB → Charminar">65M — KPHB → Charminar</option>
+              <option value="127 | Kukatpally → Charminar">127 — Kukatpally → Charminar</option>
+              <option value="142 | Ameerpet → LB Nagar">142 — Ameerpet → LB Nagar</option>
+            </optgroup>
+            <optgroup label="🔵 Express Routes">
+              <option value="505 | Hyderabad → Warangal Express">505 — Hyd → Warangal</option>
+              <option value="5K | Hyderabad → Karimnagar">5K — Hyd → Karimnagar</option>
+              <option value="212 | Hyderabad → Nalgonda">212 — Hyd → Nalgonda</option>
+              <option value="300K | MGBS → Kurnool">300K — MGBS → Kurnool</option>
+              <option value="800 | Hyderabad → Nizamabad">800 — Hyd → Nizamabad</option>
+              <option value="900 | Hyderabad → Khammam">900 — Hyd → Khammam</option>
+            </optgroup>
+            <optgroup label="🟡 Pallevelugu">
+              <option value="PV1 | MGBS → Vikarabad">PV1 — MGBS → Vikarabad</option>
+              <option value="PV2 | MGBS → Tandur">PV2 — MGBS → Tandur</option>
+              <option value="PV3 | Medchal → MGBS">PV3 — Medchal → MGBS</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="fg"><label>PASS TYPE</label><select id="aPl"><option value="day">Day Pass — ₹120</option><option value="month" selected>Monthly — ₹900</option><option value="3month">3 Months — ₹2500</option></select></div>
+        <div class="fg"><label>START DATE</label><input id="aDt" type="date"></div>
+      </div>
+      <button id="aABtn" class="btn bp" style="margin-top:8px">CREATE PASS →</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODALS -->
+<div id="mBlk" class="modal-bg">
+  <div class="modal">
+    <h3>⚠️ Confirm Card Block</h3>
+    <p style="color:#4e6480;font-size:13px;line-height:1.7">Once blocked, the card will show as <b style="color:#ef4444">BLOCKED</b> when scanned. You can unblock it anytime.</p>
+    <div class="mbtns"><button id="mBlkNo" class="btn bgh">Cancel</button><button id="mBlkYes" class="btn bd">YES, BLOCK IT</button></div>
+  </div>
+</div>
+<div id="mRch" class="modal-bg">
+  <div class="modal" style="text-align:center">
+    <div style="font-size:44px;margin-bottom:12px">✅</div>
+    <h3>Recharge Successful!</h3>
+    <p style="color:#4e6480;font-size:13px;margin-top:6px" id="mRT">Pass recharged.</p>
+    <div style="margin-top:14px;padding:12px;background:#0b1526;border-radius:10px;font-size:12px;color:#4e6480">New Expiry: <b id="mRE" style="color:#10b981">—</b></div>
+    <button id="mRDone" class="btn bp bfw" style="margin-top:16px">DONE ✓</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
