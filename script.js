@@ -104,7 +104,7 @@ function loadPDash(u){
   el('pNm').textContent=u.name.toUpperCase();
   el('pPid').textContent='Pass ID: '+u.passId;
   if(u.blocked){setSt('bl')}
-  else if(u.expiry){setSt('on');el('pExp').textContent=u.expiry;el('pExp').style.color='#10b981';el('pCt').textContent=u.cardType||'—'}
+  else if(u.expiry){setSt('on');el('pExp').textContent=u.expiry;el('pExp').style.color='#10d9a0';el('pCt').textContent=u.cardType||'—'}
   else{setSt('no')}
   updateBlkUI();loadPHist();
   // Load profile photo
@@ -119,7 +119,7 @@ function setSt(s){
   var e=el('pStat');
   if(s==='on'){e.textContent='● ACTIVE';e.className='pcst st-on'}
   else if(s==='bl'){e.textContent='● BLOCKED';e.className='pcst st-bl'}
-  else{e.textContent='● NOT RECHARGED';e.className='pcst st-no';el('pExp').textContent='Not Recharged';el('pExp').style.color='#ef4444';el('pCt').textContent='—'}
+  else{e.textContent='● NOT RECHARGED';e.className='pcst st-no';el('pExp').textContent='Not Recharged';el('pExp').style.color='#f43f5e';el('pCt').textContent='—'}
 }
 
 // Passenger tabs
@@ -147,7 +147,7 @@ el('pRBtn').addEventListener('click',function(){
     var m=spv.n==='Day Pass'?0:spv.n==='Monthly Pass'?1:3;
     var d=new Date();if(m===0){d.setDate(d.getDate()+1);}else{d.setMonth(d.getMonth()+m);}
     var exp=d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
-    el('pExp').textContent=exp;el('pExp').style.color='#10b981';
+    el('pExp').textContent=exp;el('pExp').style.color='#10d9a0';
     el('pCt').textContent=spv.n+' Pass';setSt('on');
     if(me){var u=gU(),k=me.phone+'_passenger';if(u[k]){u[k].expiry=exp;u[k].cardType=spv.n+' Pass';sU(u);me.expiry=exp;me.cardType=spv.n+' Pass';}
       var h=gPH(me.phone);h.unshift({dt:new Date().toLocaleDateString('en-IN'),pl:spv.n,am:'₹'+spv.p,mt:el('pPm').value});sPH(me.phone,h);loadPHist();}
@@ -164,8 +164,8 @@ function loadPHist(){
 
 function updateBlkUI(){
   var cs=el('pCSt'),bb=el('pBlk'),ub=el('pUblk');
-  if(blk){cs.textContent='🔴 BLOCKED';cs.style.color='#ef4444';bb.style.display='none';ub.style.display='inline-flex'}
-  else{cs.textContent='● ACTIVE — Not Blocked';cs.style.color='#10b981';bb.style.display='inline-flex';ub.style.display='none'}
+  if(blk){cs.textContent='🔴 BLOCKED';cs.style.color='#f43f5e';bb.style.display='none';ub.style.display='inline-flex'}
+  else{cs.textContent='● ACTIVE — Not Blocked';cs.style.color='#10d9a0';bb.style.display='inline-flex';ub.style.display='none'}
 }
 el('pBlk').addEventListener('click',function(){el('mBlk').classList.add('show')});
 el('pUblk').addEventListener('click',function(){
